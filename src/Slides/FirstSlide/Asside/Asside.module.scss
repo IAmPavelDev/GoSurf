@@ -1,0 +1,92 @@
+.wrapper {
+    .wrapper__title {
+        color: white;
+        font-size: 200px;
+        font-weight: 800;
+        line-height: 156px;
+        opacity: 0.07;
+    }
+    .wrapper__panel {
+        position: absolute;
+        border-right: 1px solid rgba(255, 255, 255, 0.25);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        z-index: 3;
+        top: 0;
+        width: fit-content;
+        height: 100vh;
+        .panel__title {
+            display: grid;
+            grid-template-rows: 1fr 1fr 1fr;
+            transform: rotateZ(-90deg);
+            font-size: 3.75rem;
+            line-height: 5.375rem;
+            background-color: #4af6cd;
+            height: 168px;
+            width: 157px;
+            font-weight: 800;
+            color: white;
+            white-space: nowrap;
+            direction: rtl;
+            padding-right: 12px;
+            .title__text {
+                display: flex;
+                flex-direction: row-reverse;
+                align-items: center;
+                gap: 8px;
+                .title__text__dash {
+                    display: block;
+                    background-color: #fff;
+                    height: 1px;
+                    width: 20px;
+                }
+            }
+        }
+        .panel__links {
+            display: flex;
+            flex-direction: column;
+            gap: 37px;
+            align-items: center;
+            margin-bottom: 20px;
+            .panel__links__link {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 6px;
+                font-size: 0.75rem;
+                font-weight: 500;
+                color: white;
+                cursor: pointer;
+            }
+        }
+        .panel__info {
+            color: white;
+            .panel__info__date {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                .date__day {
+                    font-size: 4.5rem;
+                    font-weight: 800;
+                }
+                .date__row {
+                    display: flex;
+                    justify-content: space-around;
+                    font-size: 1rem;
+                    font-weight: 300;
+                    width: 100%;
+                }
+            }
+            .panel__info__location {
+                display: flex;
+                gap: 8px;
+                margin-top: 30px;
+                margin-bottom: 47px;
+                font-size: 0.75rem;
+                font-weight: 300;
+            }
+        }
+    }
+}

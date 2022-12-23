@@ -1,0 +1,94 @@
+.wrapper__asside {
+    position: absolute;
+    z-index: 2;
+}
+
+.wrapper__slider {
+    .wrapper__slider__slide {
+        position: relative;
+        height: 100vh;
+        width: 100%;
+        background-image: url("./../../images/firstSlideBack.png");
+        background-size: cover;
+        background-repeat: no-repeat;
+        .slide__info {
+            position: absolute;
+            right: 80px;
+            bottom: 116px;
+            text-align: right;
+            color: #ffffff;
+            .suptitle__left {
+                font-size: 1.375rem;
+                line-height: 32px;
+                text-align: right;
+                letter-spacing: 0.45rem;
+                text-transform: uppercase;
+                opacity: 0.5;
+                padding-left: 103px;
+                position: relative;
+                display: inline-block;
+                &::before {
+                    position: absolute;
+                    content: "";
+                    height: 1px;
+                    width: 80px;
+                    background-color: #fff;
+                    opacity: 0.5;
+                    left: 0;
+                    top: 50%;
+                }
+            }
+            .slide__info__suptitle {
+                margin-bottom: 5px;
+            }
+            .slide__info__title {
+                font-weight: 800;
+                font-size: 5rem;
+                line-height: 5.375rem;
+                text-transform: uppercase;
+                margin-bottom: 3rem;
+            }
+            .slide__info__suptext {
+                margin-bottom: 8px;
+            }
+            .slide__info__text {
+                font-weight: 800;
+                font-size: 2.5rem;
+                line-height: 3rem;
+                text-transform: uppercase;
+                margin-bottom: 1.25rem;
+            }
+        }
+    }
+}
+.slide__nav__prev {
+    content: url("./../../images/arrows/leftArrow.svg");
+    top: 40px !important;
+    left: auto !important;
+    right: 125px !important;
+}
+.slide__nav__next {
+    content: url("./../../images/arrows/rightArrow.svg");
+    top: 40px !important;
+    right: 80px !important;
+}
+.pagination__bullet {
+    display: flex !important;
+    flex-direction: row;
+    .pagination__bullet__content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 6px;
+        .pagination__bullet__index {
+            font-weight: 800;
+            font-size: 1.5rem;
+            line-height: 2.125rem;
+        }
+        .pagination__bullet__title {
+            font-weight: 300;
+            font-size: 1rem;
+            line-height: 1.188rem;
+        }
+    }
+}
