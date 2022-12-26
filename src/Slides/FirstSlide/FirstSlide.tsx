@@ -9,10 +9,13 @@ import "swiper/css/effect-fade";
 import "swiper/css/autoplay";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
+import "animate.css";
 
 import rightArrow from "./../../images/arrows/rightArrow.svg";
+import downArrow from "./../../images/arrows/downArrow.svg";
 import { createEffect } from "solid-js";
 import Asside from "./Asside/Asside";
+import Map from "./Map/Map";
 
 const titlesArr = ["North Shore", "South Shore", "West Shore", "East Shore"];
 
@@ -22,7 +25,6 @@ const FirstSlide = () => {
     renderBullet: function (index: number, className: string) {
       return `
       <div 
-        draggable="false" 
         class='${styles.pagination__bullet + " " + className}'
       >
         <div class='${styles.pagination__bullet__content}'>
@@ -42,12 +44,27 @@ const FirstSlide = () => {
     document
       .getElementsByClassName("swiper-button-next")[0]
       .classList.add(styles.slide__nav__next);
+    document
+      .getElementsByClassName("swiper")[0]
+      .classList.add("swiper__container");
   });
 
   return (
-    <>
+    <div class={styles.wrapper}>
       <div class={styles.wrapper__asside}>
         <Asside />
+      </div>
+      <div
+        class={
+          styles.wrapper__downArrow + " animate__animated animate__fadeInDown"
+        }
+      >
+        <a href="#">
+          <img src={downArrow} alt="down arrow" />
+        </a>
+      </div>
+      <div class={styles.wrapper__map}>
+        <Map />
       </div>
       <Swiper
         modules={[EffectFade, Autoplay, Navigation, Pagination]}
@@ -140,7 +157,7 @@ const FirstSlide = () => {
           </div>
         </SwiperSlide>
       </Swiper>
-    </>
+    </div>
   );
 };
 

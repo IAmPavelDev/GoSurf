@@ -7,7 +7,8 @@ import clearDraggable from "../clearDraggable";
 const Slider: Component<{
   children: JSX.Element[];
   slidesToDisplay?: number;
-}> = ({ children, slidesToDisplay = 1 }) => {
+  useDragToSwipe?: boolean;
+}> = ({ children, slidesToDisplay = 1, useDragToSwipe = false }) => {
   const [slides, setSlides] = createSignal(children);
   let isMouseDown: boolean = false;
   let slideHeight = 0;
@@ -64,19 +65,21 @@ const Slider: Component<{
       })
     );
 
-    document
-      ?.getElementById("slides__track")
-      ?.addEventListener("mousedown", (e: MouseEvent) => {
-        isMouseDown = true;
-        const target = e.currentTarget as HTMLElement;
-        target.style.transition = "transform 0s";
-        currentSlide = Number(
-          (
-            Number(target.style.transform.slice(12, -3)) / slideHeight +
-            1
-          ).toFixed(0)
-        );
-      });
+    useDragToSwipe &&
+      document
+        ?.getElementById("slides__track")
+        ?.addEventListener("mousedown", (e: MouseEvent) => {
+          isMouseDown = true;
+          const target = e.currentTarget as HTMLElement;
+          target.style.transition = "transform 0s";
+          currentSlide = Number(
+            (
+              Number(target.style.transform.slice(12, -3)) / slideHeight +
+              1
+            ).toFixed(0)
+          );
+        });
+
     document
       ?.getElementById("slides__track")
       ?.addEventListener("mouseup", SliderFinalCorrector);

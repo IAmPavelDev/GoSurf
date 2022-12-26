@@ -1,0 +1,17 @@
+.wrapper {
+    svg {
+        z-index: 3;
+        position: relative;
+        .line__animation {
+            stroke-dasharray: 600;
+            stroke-dashoffset: 600;
+            animation: lineAni 5s linear 6s;
+            animation-fill-mode: both;
+            @keyframes lineAni {
+                to {
+                    stroke-dashoffset: 0;
+                }
+            }
+        }
+    }
+}

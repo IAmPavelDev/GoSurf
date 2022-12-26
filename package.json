@@ -15,6 +15,7 @@
     "vite-plugin-solid": "^2.3.0"
   },
   "dependencies": {
+    "animate.css": "^4.1.1",
     "sass": "^1.57.0",
     "solid-devtools": "^0.24.0",
     "solid-js": "^1.5.1",

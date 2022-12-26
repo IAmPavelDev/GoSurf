@@ -4,6 +4,7 @@ import styles from "./App.module.scss";
 import firstSlideBackground from "./images/firstSlideBack.png";
 import Slider from "./slider/Vertical/Slider";
 import FirstSlide from "./Slides/FirstSlide/FirstSlide";
+import SecondSlide from "./Slides/SecondSlide/SecondSlide";
 
 const App: Component = () => {
   createEffect(() => {});
@@ -13,7 +14,7 @@ const App: Component = () => {
         <FirstSlide />
       </div>
       <div class={styles.slide}>
-        <img src={firstSlideBackground} alt="first slide background" />
+        <SecondSlide />
       </div>
       <div class={styles.slide}>
         <img src={firstSlideBackground} alt="first slide background" />

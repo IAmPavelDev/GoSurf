@@ -1,8 +1,26 @@
+.wrapper {
+    position: relative;
+    height: 100vh;
+}
 .wrapper__asside {
     position: absolute;
     z-index: 2;
 }
-
+.wrapper__downArrow {
+    position: absolute;
+    bottom: 40px;
+    left: 210px;
+    z-index: 11 !important;
+    animation: fadeInDown ease-out infinite;
+    animation: animationPause 5s linear infinite;
+    --animate-delay: 3s;
+    --animate-duration: 2s;
+}
+.wrapper__map {
+    position: absolute;
+    right: 0;
+    top: 0;
+}
 .wrapper__slider {
     .wrapper__slider__slide {
         position: relative;
@@ -91,4 +109,7 @@
             line-height: 1.188rem;
         }
     }
+}
+.swiper__container {
+    z-index: 0 !important;
 }
