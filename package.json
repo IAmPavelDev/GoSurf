@@ -19,6 +19,7 @@
     "sass": "^1.57.0",
     "solid-devtools": "^0.24.0",
     "solid-js": "^1.5.1",
+    "solid-styled-components": "^0.28.5",
     "swiper": "^8.4.5"
   }
 }

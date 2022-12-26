@@ -34,7 +34,7 @@ const BeachDataArray: TBeachInfo[] = [
   },
   {
     beach: "Airlie beach",
-    country: "Kuba",
+    country: "Cuba",
     surf: "9-13",
     tide: "+2.3",
     wind: "4 SE",
@@ -74,11 +74,48 @@ const BeachDataArray: TBeachInfo[] = [
   },
 ];
 
-const passLocation = (location: string) => {
+let displayed: HTMLElement;
+const hidePopUp = (e: MouseEvent) => {
+  if (displayed) {
+    const [x, y] = [e.clientX, e.clientY];
+    const popUpRect = displayed.getBoundingClientRect();
+    if (
+      x < popUpRect.x ||
+      x > popUpRect.x + popUpRect.width ||
+      y < popUpRect.y ||
+      y > popUpRect.y + popUpRect.height
+    ) {
+      displayed.classList.remove(styles.popUp__displayed);
+      displayed.classList.add(styles.popUp__hidden);
+    }
+  }
+};
+
+const passLocation = (location: string, e: MouseEvent) => {
   for (const data of BeachDataArray) {
     if (data.country === location) {
       const target = document.getElementById(data.id);
-      target && (target.style.display = "block");
+
+      document.removeEventListener("click", hidePopUp);
+      if (displayed) {
+        displayed.classList.remove(styles.popUp__displayed);
+        displayed.classList.add(styles.popUp__hidden);
+      }
+
+      if (target) {
+        const y = document
+          .getElementsByClassName(styles.wrapper__locationDots)[0]
+          .getBoundingClientRect().y;
+
+        target.classList.remove(styles.popUp);
+        target.classList.remove(styles.popUp__hidden);
+        target.classList.add(styles.popUp__displayed);
+
+        target.style.left = `${e.clientX - 100}px`;
+        target.style.top = `${e.clientY - y - target.offsetHeight - 20}px`;
+        displayed = target;
+        document.addEventListener("click", hidePopUp);
+      }
     }
   }
 };

@@ -1,8 +1,16 @@
 import { Component } from "solid-js";
+import { styled } from "solid-styled-components";
 
-const LocationDots: Component<{ passLocation: (location: string) => void }> = ({
-  passLocation,
-}) => {
+const DotWrapp = styled.g`
+  cursor: pointer;
+`;
+const Dot = styled.path`
+  cursor: pointer;
+`;
+
+const LocationDots: Component<{
+  passLocation: (location: string, e: MouseEvent) => void;
+}> = ({ passLocation }) => {
   return (
     <svg
       width="1248"
@@ -15637,14 +15645,20 @@ const LocationDots: Component<{ passLocation: (location: string) => void }> = ({
           fill="white"
         />
       </g>
-      <g filter="url(#filter0_d_0_170)">
-        <path
+
+      <DotWrapp
+        onClick={(e: MouseEvent) => passLocation("USA", e)}
+        filter="url(#filter0_d_0_170)"
+      >
+        <Dot
+          onClick={(e: MouseEvent) => passLocation("USA", e)}
           fill-rule="evenodd"
           clip-rule="evenodd"
           d="M196 314C202.627 314 208 308.627 208 302C208 295.373 202.627 290 196 290C189.373 290 184 295.373 184 302C184 308.627 189.373 314 196 314Z"
           fill="#4AF6CD"
         />
-      </g>
+      </DotWrapp>
+
       <g opacity="0.299219">
         <path
           fill-rule="evenodd"
@@ -15657,63 +15671,90 @@ const LocationDots: Component<{ passLocation: (location: string) => void }> = ({
           fill="white"
         />
       </g>
-      <g filter="url(#filter1_d_0_170)">
-        <path
+      <DotWrapp
+        onClick={(e: MouseEvent) => passLocation("Australia", e)}
+        filter="url(#filter1_d_0_170)"
+      >
+        <Dot
+          onClick={(e: MouseEvent) => passLocation("Australia", e)}
           fill-rule="evenodd"
           clip-rule="evenodd"
           d="M1149 525C1155.63 525 1161 519.627 1161 513C1161 506.373 1155.63 501 1149 501C1142.37 501 1137 506.373 1137 513C1137 519.627 1142.37 525 1149 525Z"
           fill="#4AF6CD"
         />
-      </g>
-      <g filter="url(#filter2_d_0_170)">
-        <path
+      </DotWrapp>
+      <DotWrapp
+        onClick={(e: MouseEvent) => passLocation("UK", e)}
+        filter="url(#filter2_d_0_170)"
+      >
+        <Dot
+          onClick={(e: MouseEvent) => passLocation("UK", e)}
           fill-rule="evenodd"
           clip-rule="evenodd"
           d="M590 236C596.627 236 602 230.627 602 224C602 217.373 596.627 212 590 212C583.373 212 578 217.373 578 224C578 230.627 583.373 236 590 236Z"
           fill="#4AF6CD"
         />
-      </g>
-      <g filter="url(#filter3_d_0_170)">
-        <path
+      </DotWrapp>
+      <DotWrapp
+        onClick={(e: MouseEvent) => passLocation("India", e)}
+        filter="url(#filter3_d_0_170)"
+      >
+        <Dot
+          onClick={(e: MouseEvent) => passLocation("India", e)}
           fill-rule="evenodd"
           clip-rule="evenodd"
           d="M858 419C864.627 419 870 413.627 870 407C870 400.373 864.627 395 858 395C851.373 395 846 400.373 846 407C846 413.627 851.373 419 858 419Z"
           fill="#4AF6CD"
         />
-      </g>
-      <g filter="url(#filter4_d_0_170)">
-        <path
+      </DotWrapp>
+      <DotWrapp
+        onClick={(e: MouseEvent) => passLocation("South Africa", e)}
+        filter="url(#filter4_d_0_170)"
+      >
+        <Dot
+          onClick={(e: MouseEvent) => passLocation("South Africa", e)}
           fill-rule="evenodd"
           clip-rule="evenodd"
           d="M697 579C703.627 579 709 573.627 709 567C709 560.373 703.627 555 697 555C690.373 555 685 560.373 685 567C685 573.627 690.373 579 697 579Z"
           fill="#4AF6CD"
         />
-      </g>
-      <g filter="url(#filter5_d_0_170)">
-        <path
+      </DotWrapp>
+      <DotWrapp
+        onClick={(e: MouseEvent) => passLocation("Brazil", e)}
+        filter="url(#filter5_d_0_170)"
+      >
+        <Dot
+          onClick={(e: MouseEvent) => passLocation("Brazil", e)}
           fill-rule="evenodd"
           clip-rule="evenodd"
           d="M473 525C479.627 525 485 519.627 485 513C485 506.373 479.627 501 473 501C466.373 501 461 506.373 461 513C461 519.627 466.373 525 473 525Z"
           fill="#4AF6CD"
         />
-      </g>
-      <g filter="url(#filter6_d_0_170)">
-        <path
+      </DotWrapp>
+      <DotWrapp
+        onClick={(e: MouseEvent) => passLocation("Cuba", e)}
+        filter="url(#filter6_d_0_170)"
+      >
+        <Dot
+          onClick={(e: MouseEvent) => passLocation("Cuba", e)}
           fill-rule="evenodd"
           clip-rule="evenodd"
           d="M398 342C404.627 342 410 336.627 410 330C410 323.373 404.627 318 398 318C391.373 318 386 323.373 386 330C386 336.627 391.373 342 398 342Z"
           fill="#4AF6CD"
         />
-      </g>
-      <g filter="url(#filter7_d_0_170)">
-        <path
-          onClick={() => passLocation("Hawai")}
+      </DotWrapp>
+      <DotWrapp
+        onClick={(e: MouseEvent) => passLocation("Hawai", e)}
+        filter="url(#filter7_d_0_170)"
+      >
+        <Dot
+          onClick={(e: MouseEvent) => passLocation("Hawai", e)}
           fill-rule="evenodd"
           clip-rule="evenodd"
           d="M47 354C53.6274 354 59 348.627 59 342C59 335.373 53.6274 330 47 330C40.3726 330 35 335.373 35 342C35 348.627 40.3726 354 47 354Z"
           fill="#4AF6CD"
         />
-      </g>
+      </DotWrapp>
       <defs>
         <filter
           id="filter0_d_0_170"

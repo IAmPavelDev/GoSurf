@@ -1,9 +1,10 @@
 .wrapper {
-    // border: 1px solid red;
     padding: 30px;
     color: white;
     background-color: rgba(15, 16, 16, 0.7);
     border-radius: 6px;
+    min-width: 220px;
+    min-height: 168px;
     .wrapper__top {
         display: flex;
         justify-content: space-between;
