@@ -3,21 +3,22 @@ import "solid-devtools"; //devtools
 import styles from "./App.module.scss";
 import firstSlideBackground from "./images/firstSlideBack.png";
 import Slider from "./slider/Vertical/Slider";
-import FirstSlide from "./Slides/FirstSlide/FirstSlide";
-import SecondSlide from "./Slides/SecondSlide/SecondSlide";
+import General from "./Slides/General/General";
+import SurfMap from "./Slides/SurfMap/SurfMap";
+import SurfSlider from "./Slides/SurfSlider/SurfSlider";
 
 const App: Component = () => {
   createEffect(() => {});
   return (
     <Slider>
       <div class={styles.slide}>
-        <FirstSlide />
+        <General />
       </div>
       <div class={styles.slide}>
-        <SecondSlide />
+        <SurfMap />
       </div>
       <div class={styles.slide}>
-        <img src={firstSlideBackground} alt="first slide background" />
+        <SurfSlider />
       </div>
       <div class={styles.slide}>
         <img src={firstSlideBackground} alt="first slide background" />

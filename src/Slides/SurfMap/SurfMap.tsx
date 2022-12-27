@@ -1,6 +1,6 @@
-import styles from "./SecondSlide.module.scss";
+import styles from "./SurfMap.module.scss";
 
-import LocationDots from "./../../images/locationDots";
+import LocationDots from "../../images/locationDots";
 import SurfLogoTitle from "./../../images/SurfLogoTitle.svg";
 import Location from "./../../images/location.svg";
 import PopUp from "./LocationPopUp/PopUp";

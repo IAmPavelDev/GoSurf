@@ -1,5 +1,5 @@
-import styles from "./FirstSlide.module.scss";
-import "./FirstSlideStyle.scss";
+import styles from "./General.module.scss";
+import "./GeneralStyles.scss";
 
 import { Swiper, SwiperSlide } from "swiper/solid";
 import { Autoplay, EffectFade, Navigation, Pagination } from "swiper";
