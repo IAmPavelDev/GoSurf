@@ -1,13 +1,25 @@
 .wrapper {
-    height: 100%;
+    position: relative;
+    height: 100vh;
     width: 100%;
     background-color: #171919;
+    overflow: visible;
     .wrapper__navi {
-        padding: 20px;
+        padding: 25px;
         height: 25px;
     }
     .wrapper__slider {
-        height: fit-content;
-        border: 1px solid red;
+        height: calc(100vh - 70px);
     }
+}
+.slide__nav__prev {
+    content: url("./../../images/arrows/leftArrow.svg");
+    top: 40px;
+    right: 125px;
+    left: auto;
+}
+.slide__nav__next {
+    content: url("./../../images/arrows/rightArrow.svg");
+    top: 40px;
+    right: 80px;
 }

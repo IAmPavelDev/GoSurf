@@ -5,6 +5,8 @@
     .slide {
         box-sizing: border-box;
         transition: all 0.6s;
+    overflow-y: scroll;
+    overflow-x: hidden;
     }
     #slides__track {
         transition: all 2s;

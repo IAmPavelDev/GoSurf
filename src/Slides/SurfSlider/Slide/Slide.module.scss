@@ -1,56 +1,54 @@
 .wrapper {
     display: flex;
     position: relative;
-    height: 750px;
+    height: 590px;
+    width: 310px;
     color: white;
     text-transform: uppercase;
-    width: fit-content;
-    .wrapper__backImg {
-        position: absolute;
-        top: 0;
-        left: 0;
-        z-index: 1;
-    }
-    .wrapper__data {
-        position: absolute;
-        top: 0;
-        left: 0;
+    background-size: cover;
+    background-repeat: no-repeat;
+    padding: 80px 40px;
+    margin: 100px auto 0 auto;
+    .wrapper__data__title {
+        font-weight: 800;
+        font-size: 40px;
+        line-height: 36px;
+        width: 10px;
         z-index: 2;
-        padding: 72px 40px;
-        display: flex;
-        flex-direction: column;
-        flex-wrap: wrap;
-        justify-content: space-between;
-        align-items: flex-start;
-        align-content: flex-start;
-        height: calc(100% - 144px);
-        z-index: 3;
-        .wrapper__data__title {
-            font-weight: 800;
-            font-size: 40px;
-            line-height: 36px;
-            width: 10px;
-        }
     }
     .wrapper__data__place {
-        transform: rotateZ(-90deg);
-        align-self: flex-start;
-        white-space: nowrap;
+        transform: rotateZ(-90deg) translateX(calc(50%)) translateY(-50%);
         position: absolute;
+        z-index: 2;
         bottom: 80px;
-        left: 0px;
-        z-index: 3;
-        text-align: left;
+        left: 40px;
+        text-align: right;
+        font-size: 18px;
+        line-height: 22px;
+        letter-spacing: 8px;
+        width: 50px;
+        white-space: nowrap;
     }
+
     .wrapper__mask {
-        // background: #1C2121;
         position: absolute;
+        background: #1c2121;
+        background-size: contain;
         top: 0;
         left: 0;
         height: 100%;
         width: 390px;
-        z-index: 2;
         flex: 1;
         opacity: 0.85;
+        transition: all 0.4s;
+        &:hover {
+            opacity: 0.3;
+        }
     }
+}
+.wrapper__data__title:hover ~ .wrapper__mask {
+    opacity: 0.3;
+}
+.wrapper__data__place:hover ~ .wrapper__mask {
+    opacity: 0.3;
 }

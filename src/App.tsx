@@ -22,6 +22,7 @@ const App: Component = () => {
       </div>
       <div class={styles.slide}>
         <img src={firstSlideBackground} alt="first slide background" />
+        <img src={firstSlideBackground} alt="first slide background" />
       </div>
       <div class={styles.slide}>
         <img src={firstSlideBackground} alt="first slide background" />
