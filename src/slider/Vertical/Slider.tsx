@@ -10,9 +10,9 @@ const Slider: Component<{
   useDragToSwipe?: boolean;
 }> = ({ children, slidesToDisplay = 1, useDragToSwipe = false }) => {
   const [slides, setSlides] = createSignal(children);
-
+  let slideTrack: HTMLDivElement | undefined;
   let isMouseDown: boolean = false; //is mouse key pressed flag
-  let slideHeightArray: Array<number> = []; //contain height of every single slide by index from 0 to children.length
+  const slideHeightArray: Array<number> = []; //contain height of every single slide by index from 0 to children.length
   let currentSlide = 1; //number of currently displaying slide, from 1 to children.length + 1
 
   const getHeightToShift = (direction: "prev" | "next"): number => {
@@ -21,23 +21,45 @@ const Slider: Component<{
       .reduce((acc, h) => acc + h, 0);
   };
 
+  const getPrevSlidesHeightsSum = () => {
+    return slideHeightArray
+      .slice(0, currentSlide - 1)
+      .reduce((acc, h) => acc + h, 0);
+  };
+
   const next = () => {
-    const track = document.getElementById("slides__track");
-    if (track) {
-      track.style.transition = "all 0.6s";
-    }
-    if (track && currentSlide < children.length) {
-      track.style.transform = `translateY(${-getHeightToShift("next")}px)`;
+    slideTrack && (slideTrack.style.transition = "all 0.6s");
+    const isBottom =
+      slideTrack &&
+      Math.abs(slideTrack.getBoundingClientRect().y) +
+        window.innerHeight -
+        getPrevSlidesHeightsSum() ===
+        slideTrack.getBoundingClientRect().height;
+
+    if (slideTrack && currentSlide < children.length && isBottom) {
+      slideTrack.style.transform = `translateY(${-getHeightToShift("next")}px)`;
       currentSlide++;
+      const h = slideHeightArray[currentSlide - 1];
+      slideTrack.style.height = `${h}px`;
     }
+    console.log("hi");
   };
   const prev = () => {
-    const track = document.getElementById("slides__track");
-    track && (track.style.transition = "all 0.6s");
-    if (track && currentSlide >= 2) {
-      track.style.transform = `translateY(${-getHeightToShift("prev")}px)`;
+    const isTop =
+      slideTrack &&
+      Math.abs(slideTrack.getBoundingClientRect().y) ===
+        getPrevSlidesHeightsSum();
+    slideTrack &&
+      (slideTrack.style.transition = `all ${
+        slideHeightArray[currentSlide - 2] / 1800
+      }s`);
+    if (slideTrack && currentSlide >= 2 && isTop) {
+      slideTrack.style.transform = `translateY(${-getHeightToShift("prev")}px)`;
       currentSlide--;
+      slideTrack.style.height = `${slideHeightArray[currentSlide - 1]}px`;
     }
+
+    slideTrack && console.log();
   };
   // const SliderFinalCorrector = (e: MouseEvent | WheelEvent) => {
   //   const target = e.currentTarget as HTMLElement;
@@ -71,28 +93,38 @@ const Slider: Component<{
         // (slide as HTMLElement).style.height = `${
         //   window.innerHeight / slidesToDisplay
         // }px`;
-        slideHeightArray.push(
-          Number(window.getComputedStyle(slideH).height.slice(0, -2))
+        const slideHeight: number = parseInt(
+          window
+            .getComputedStyle(slide as HTMLElement, null)
+            .height.slice(0, -2)
         );
+        const wHeight = window.innerHeight;
+        slideHeightArray.push(slideHeight < wHeight ? wHeight : slideHeight);
         clearDraggable(slide as ChildNode);
         return slide;
       })
     );
 
+    slideTrack &&
+      (slideTrack.style.height = `${slideHeightArray[currentSlide - 1]}px`);
+
+    window.addEventListener("resize", () => {
+      slideTrack &&
+        (slideTrack.style.height = `${slideHeightArray[currentSlide - 1]}px`);
+    });
+
     useDragToSwipe &&
-      document
-        ?.getElementById("slides__track")
-        ?.addEventListener("mousedown", (e: MouseEvent) => {
-          isMouseDown = true;
-          const target = e.currentTarget as HTMLElement;
-          target.style.transition = "transform 0s";
-          // currentSlide = Number(
-          //   (
-          //     Number(target.style.transform.slice(12, -3)) / slideHeight +
-          //     1
-          //   ).toFixed(0)
-          // );
-        });
+      slideTrack?.addEventListener("mousedown", (e: MouseEvent) => {
+        isMouseDown = true;
+        const target = e.currentTarget as HTMLElement;
+        target.style.transition = "transform 0s";
+        // currentSlide = Number(
+        //   (
+        //     Number(target.style.transform.slice(12, -3)) / slideHeight +
+        //     1
+        //   ).toFixed(0)
+        // );
+      });
 
     // document
     //   ?.getElementById("slides__track")
@@ -111,15 +143,15 @@ const Slider: Component<{
     //       Number(target.style.transform.slice(11, -3)) + e.movementY;
     //     if (isMouseDown) target.style.transform = `translateY(${moveY}px)`;
     //   });
-    document
-      ?.getElementById("slides__track")
-      ?.addEventListener("wheel", (e: WheelEvent) => {
-        e.deltaY > 0 ? next() : prev();
-      });
+    slideTrack?.addEventListener("wheel", (e: WheelEvent) => {
+      e.deltaY > 0 ? next() : prev();
+    });
   });
   return (
     <div class={styles.wrapper}>
-      <div id="slides__track">{slides()}</div>
+      <div id="slides__track" ref={slideTrack}>
+        {slides()}
+      </div>
     </div>
   );
 };
