@@ -4,77 +4,12 @@ import LocationDots from "../../images/locationDots";
 import SurfLogoTitle from "./../../images/SurfLogoTitle.svg";
 import Location from "./../../images/location.svg";
 import PopUp from "./LocationPopUp/PopUp";
-import { createUniqueId, For } from "solid-js";
-import { TBeachInfo } from "./types";
+import { For } from "solid-js";
 
-const BeachDataArray: TBeachInfo[] = [
-  {
-    beach: "Airlie beach",
-    country: "Australia",
-    surf: "9-13",
-    tide: "+2.3",
-    wind: "4 SE",
-    id: createUniqueId(),
-  },
-  {
-    beach: "Airlie beach",
-    country: "Hawai",
-    surf: "9-13",
-    tide: "+2.3",
-    wind: "4 SE",
-    id: createUniqueId(),
-  },
-  {
-    beach: "Airlie beach",
-    country: "USA",
-    surf: "9-13",
-    tide: "+2.3",
-    wind: "4 SE",
-    id: createUniqueId(),
-  },
-  {
-    beach: "Airlie beach",
-    country: "Cuba",
-    surf: "9-13",
-    tide: "+2.3",
-    wind: "4 SE",
-    id: createUniqueId(),
-  },
-  {
-    beach: "Airlie beach",
-    country: "Brazil",
-    surf: "9-13",
-    tide: "+2.3",
-    wind: "4 SE",
-    id: createUniqueId(),
-  },
-  {
-    beach: "Airlie beach",
-    country: "UK",
-    surf: "9-13",
-    tide: "+2.3",
-    wind: "4 SE",
-    id: createUniqueId(),
-  },
-  {
-    beach: "Airlie beach",
-    country: "South Africa",
-    surf: "9-13",
-    tide: "+2.3",
-    wind: "4 SE",
-    id: createUniqueId(),
-  },
-  {
-    beach: "Airlie beach",
-    country: "India",
-    surf: "9-13",
-    tide: "+2.3",
-    wind: "4 SE",
-    id: createUniqueId(),
-  },
-];
+import BeachDataArray from "./../../BeachDataArray";
 
 let displayed: HTMLElement;
+
 const hidePopUp = (e: MouseEvent) => {
   if (displayed) {
     const [x, y] = [e.clientX, e.clientY];

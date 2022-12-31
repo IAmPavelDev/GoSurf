@@ -31,10 +31,10 @@ const Slider: Component<{
     slideTrack && (slideTrack.style.transition = "all 0.6s");
     const isBottom =
       slideTrack &&
-      Math.abs(slideTrack.getBoundingClientRect().y) +
+      Math.abs(parseInt(slideTrack.getBoundingClientRect().y.toFixed(0))) +
         window.innerHeight -
-        getPrevSlidesHeightsSum() ===
-        slideTrack.getBoundingClientRect().height;
+        getPrevSlidesHeightsSum() >=
+        parseInt(slideTrack.getBoundingClientRect().height.toFixed(0));
 
     if (slideTrack && currentSlide < children.length && isBottom) {
       slideTrack.style.transform = `translateY(${-getHeightToShift("next")}px)`;
@@ -42,12 +42,11 @@ const Slider: Component<{
       const h = slideHeightArray[currentSlide - 1];
       slideTrack.style.height = `${h}px`;
     }
-    console.log("hi");
   };
   const prev = () => {
     const isTop =
       slideTrack &&
-      Math.abs(slideTrack.getBoundingClientRect().y) ===
+      Math.abs(parseInt(slideTrack.getBoundingClientRect().y.toFixed(0))) <=
         getPrevSlidesHeightsSum();
     slideTrack &&
       (slideTrack.style.transition = `all ${
@@ -58,9 +57,16 @@ const Slider: Component<{
       currentSlide--;
       slideTrack.style.height = `${slideHeightArray[currentSlide - 1]}px`;
     }
-
-    slideTrack && console.log();
   };
+
+  const computeSlideHeight = () => {
+    children.forEach((slide, index) => {
+      slideHeightArray[index] = parseInt(
+        window.getComputedStyle(slide as HTMLElement, null).height.slice(0, -2)
+      );
+    });
+  };
+
   // const SliderFinalCorrector = (e: MouseEvent | WheelEvent) => {
   //   const target = e.currentTarget as HTMLElement;
   //   currentSlide = Number(
@@ -90,16 +96,7 @@ const Slider: Component<{
         const slideH: HTMLElement = slide as HTMLElement;
 
         slideH.classList.add(styles.slide);
-        // (slide as HTMLElement).style.height = `${
-        //   window.innerHeight / slidesToDisplay
-        // }px`;
-        const slideHeight: number = parseInt(
-          window
-            .getComputedStyle(slide as HTMLElement, null)
-            .height.slice(0, -2)
-        );
-        const wHeight = window.innerHeight;
-        slideHeightArray.push(slideHeight < wHeight ? wHeight : slideHeight);
+        computeSlideHeight();
         clearDraggable(slide as ChildNode);
         return slide;
       })
@@ -144,6 +141,7 @@ const Slider: Component<{
     //     if (isMouseDown) target.style.transform = `translateY(${moveY}px)`;
     //   });
     slideTrack?.addEventListener("wheel", (e: WheelEvent) => {
+      computeSlideHeight();
       e.deltaY > 0 ? next() : prev();
     });
   });
