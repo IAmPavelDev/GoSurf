@@ -1,5 +1,5 @@
 import { Component } from "solid-js";
-import { TBeachInfo } from "../types";
+import { TBeachInfo } from "./../../../BeachDataArray";
 import styles from "./PopUp.module.scss";
 import rightArrow from "./../../../images/arrows/rightArrow.svg";
 import SurfIcon from "./../../../images/SurfIcon.svg";
@@ -7,7 +7,6 @@ import Wind from "./../../../images/Wind.svg";
 import Water from "./../../../images/Water.svg";
 
 const PopUp: Component<{ data: TBeachInfo }> = ({ data }) => {
-  console.log(data);
   return (
     <div class={styles.wrapper}>
       <div class={styles.wrapper__top}>
