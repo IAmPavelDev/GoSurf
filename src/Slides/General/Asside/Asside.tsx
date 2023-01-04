@@ -5,8 +5,12 @@ import surfboardIcon from "./../../../images/surfboard.svg";
 import travelIcon from "./../../../images/Travel.svg";
 import searchIcon from "./../../../images/search.svg";
 import locationIcon from "./../../../images/location.svg";
+import { Component } from "solid-js";
+import { controllTypes } from "../../../slider/Vertical/Slider";
 
-const Asside = () => {
+const Asside: Component<{
+  sliderController: () => controllTypes;
+}> = ({ sliderController }) => {
   const currentDate: Date = new Date();
   return (
     <div class={styles.wrapper}>
@@ -25,7 +29,10 @@ const Asside = () => {
         </div>
         <div class={styles.panel__bottom}>
           <div class={styles.panel__links}>
-            <div class={styles.panel__links__link}>
+            <div
+              class={styles.panel__links__link}
+              onClick={() => sliderController().scrollToSlide(2)}
+            >
               <img src={surfIcon} />
               Surf
             </div>

@@ -1,19 +1,25 @@
-import { Component, createEffect } from "solid-js";
+import { Component, createEffect, createSignal } from "solid-js";
 import "solid-devtools"; //devtools
 import styles from "./App.module.scss";
 import firstSlideBackground from "./images/firstSlideBack.png";
-import Slider from "./slider/Vertical/Slider";
+import Slider, { controllTypes } from "./slider/Vertical/Slider";
 import General from "./Slides/General/General";
 import SurfMap from "./Slides/SurfMap/SurfMap";
 import SurfSlider from "./Slides/SurfSlider/SurfSlider";
 import Travel from "./Slides/Travel/Travel";
+import Sleep from "./Slides/Sleep/Sleep";
 
 const App: Component = () => {
-  createEffect(() => {});
+  const [sliderController, setSliderController] = createSignal<controllTypes>();
   return (
-    <Slider>
+    <Slider
+      controller={(e) => {
+        setSliderController(e);
+        console.log(e);
+      }}
+    >
       <div class={styles.slide}>
-        <General />
+        <General sliderController={sliderController} />
       </div>
       <div class={styles.slide}>
         <SurfMap />
@@ -25,7 +31,7 @@ const App: Component = () => {
         <Travel />
       </div>
       <div class={styles.slide}>
-        <img src={firstSlideBackground} alt="first slide background" />
+        <Sleep />
       </div>
     </Slider>
   );

@@ -19,7 +19,10 @@ export type TBeachInfo = {
   landscape: string;
   distance: string;
   time: string;
-  pricing: string;
+  planePricing: string;
+  nights: number;
+  guests: number;
+  nightPrice: string;
 };
 
 const BeachDataArray: TBeachInfo[] = [
@@ -33,7 +36,10 @@ const BeachDataArray: TBeachInfo[] = [
     landscape: Australia,
     distance: "7,065",
     time: "23 hours 10 minutes",
-    pricing: "1,976 USD",
+    planePricing: "1,976 USD",
+    guests: 1,
+    nights: 1,
+    nightPrice: "220 USD",
   },
   {
     beach: "Hawai beach",
@@ -45,7 +51,10 @@ const BeachDataArray: TBeachInfo[] = [
     landscape: Hawai,
     distance: "6,265",
     time: "21 hours 14 minutes",
-    pricing: "5,373 USD",
+    planePricing: "5,373 USD",
+    guests: 1,
+    nightPrice: "220 USD",
+    nights: 1,
   },
   {
     beach: "Malibu beach",
@@ -57,7 +66,10 @@ const BeachDataArray: TBeachInfo[] = [
     landscape: Malibu,
     distance: "2,365",
     time: "20 hours 13 minutes",
-    pricing: "1,976 USD",
+    planePricing: "1,976 USD",
+    guests: 1,
+    nightPrice: "220 USD",
+    nights: 1,
   },
   {
     beach: "Cuba beach",
@@ -69,7 +81,10 @@ const BeachDataArray: TBeachInfo[] = [
     landscape: Cuba,
     distance: "8,043",
     time: "23 hours 10 minutes",
-    pricing: "6,331 USD",
+    planePricing: "6,331 USD",
+    guests: 1,
+    nightPrice: "220 USD",
+    nights: 1,
   },
   {
     beach: "Brazil beach",
@@ -81,7 +96,10 @@ const BeachDataArray: TBeachInfo[] = [
     landscape: Brazil,
     distance: "9,065",
     time: "26 hours 10 minutes",
-    pricing: "1,332 USD",
+    planePricing: "1,332 USD",
+    guests: 1,
+    nightPrice: "220 USD",
+    nights: 1,
   },
   {
     beach: "England beach",
@@ -93,7 +111,10 @@ const BeachDataArray: TBeachInfo[] = [
     landscape: UK,
     distance: "3,065",
     time: "5 hours 40 minutes",
-    pricing: "7,736 USD",
+    planePricing: "7,736 USD",
+    guests: 1,
+    nightPrice: "220 USD",
+    nights: 1,
   },
   {
     beach: "South Africa beach",
@@ -105,7 +126,10 @@ const BeachDataArray: TBeachInfo[] = [
     landscape: SouthAfrica,
     distance: "5,065",
     time: "2 hours 50 minutes",
-    pricing: "4,976 USD",
+    planePricing: "4,976 USD",
+    nights: 1,
+    nightPrice: "220 USD",
+    guests: 1,
   },
   {
     beach: "India beach",
@@ -117,7 +141,10 @@ const BeachDataArray: TBeachInfo[] = [
     landscape: India,
     distance: "3,065",
     time: "12 hours 14 minutes",
-    pricing: "1,575 USD",
+    planePricing: "1,575 USD",
+    guests: 1,
+    nightPrice: "220 USD",
+    nights: 1,
   },
 ];
 export default BeachDataArray;

@@ -4,11 +4,22 @@ import styles from "./Slider.module.scss";
 
 import clearDraggable from "../clearDraggable";
 
+export type controllTypes = {
+  scrollToSlide: (numberOfSlide: number) => void;
+  nextSlide: () => void;
+  prevSlide: () => void;
+};
 const Slider: Component<{
   children: JSX.Element[];
   slidesToDisplay?: number;
   useDragToSwipe?: boolean;
-}> = ({ children, slidesToDisplay = 1, useDragToSwipe = false }) => {
+  controller?: (controller: controllTypes) => void;
+}> = ({
+  children,
+  slidesToDisplay = 1,
+  useDragToSwipe = false,
+  controller,
+}) => {
   const [slides, setSlides] = createSignal(children);
   let slideTrack: HTMLDivElement | undefined;
   let isMouseDown: boolean = false; //is mouse key pressed flag
@@ -27,20 +38,29 @@ const Slider: Component<{
       .reduce((acc, h) => acc + h, 0);
   };
 
-  const next = () => {
-    slideTrack && (slideTrack.style.transition = "all 0.6s");
-    const isBottom =
+  const isBottom = (): boolean =>
+    !!(
       slideTrack &&
       Math.abs(parseInt(slideTrack.getBoundingClientRect().y.toFixed(0))) +
         window.innerHeight -
         getPrevSlidesHeightsSum() >=
-        parseInt(slideTrack.getBoundingClientRect().height.toFixed(0));
-
-    if (slideTrack && currentSlide < children.length && isBottom) {
+        parseInt(slideTrack.getBoundingClientRect().height.toFixed(0))
+    );
+  const next = () => {
+    slideTrack &&
+      (slideTrack.style.transition = `all ${
+        slideHeightArray[currentSlide] / 2000
+      }s`);
+    if (slideTrack && currentSlide < children.length && isBottom()) {
       slideTrack.style.transform = `translateY(${-getHeightToShift("next")}px)`;
       currentSlide++;
       const h = slideHeightArray[currentSlide - 1];
       slideTrack.style.height = `${h}px`;
+      window.scrollTo({
+        top: 100,
+        left: 0,
+        behavior: "smooth",
+      });
     }
   };
   const prev = () => {
@@ -50,7 +70,7 @@ const Slider: Component<{
         getPrevSlidesHeightsSum();
     slideTrack &&
       (slideTrack.style.transition = `all ${
-        slideHeightArray[currentSlide - 2] / 1800
+        slideHeightArray[currentSlide - 2] / 2000
       }s`);
     if (slideTrack && currentSlide >= 2 && isTop) {
       slideTrack.style.transform = `translateY(${-getHeightToShift("prev")}px)`;
@@ -65,6 +85,26 @@ const Slider: Component<{
         window.getComputedStyle(slide as HTMLElement, null).height.slice(0, -2)
       );
     });
+  };
+
+  const scrollToSlide = (slide: number) => {
+    console.log(slide);
+    slideTrack &&
+      (slideTrack.style.transition = `all ${
+        0.6 * Math.abs(slide - currentSlide)
+      }s`);
+
+    slide -= 1;
+    let shifter: number = slideHeightArray
+      .slice(0, slide)
+      .reduce((acc, h) => acc + h, 0);
+
+    if (slideTrack && currentSlide < children.length && isBottom()) {
+      slideTrack.style.transform = `translateY(${-shifter}px)`;
+      currentSlide = slide;
+      const h = slideHeightArray[currentSlide - 1];
+      slideTrack.style.height = `${h}px`;
+    }
   };
 
   // const SliderFinalCorrector = (e: MouseEvent | WheelEvent) => {
@@ -101,7 +141,13 @@ const Slider: Component<{
         return slide;
       })
     );
-
+    if (controller) {
+      controller({
+        nextSlide: next,
+        prevSlide: prev,
+        scrollToSlide: (slide: number) => scrollToSlide(slide),
+      });
+    }
     slideTrack &&
       (slideTrack.style.height = `${slideHeightArray[currentSlide - 1]}px`);
 

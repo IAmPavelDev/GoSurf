@@ -13,13 +13,18 @@ import "animate.css";
 
 import rightArrow from "./../../images/arrows/rightArrow.svg";
 import downArrow from "./../../images/arrows/downArrow.svg";
-import { createEffect } from "solid-js";
+import { Component, createEffect } from "solid-js";
 import Asside from "./Asside/Asside";
 import Map from "./Map/Map";
+import { controllTypes } from "../../slider/Vertical/Slider";
 
 const titlesArr = ["North Shore", "South Shore", "West Shore", "East Shore"];
 
-const FirstSlide = () => {
+const FirstSlide: Component<{
+  sliderController: () => controllTypes;
+}> = ({ sliderController }) => {
+  console.log(sliderController);
+
   const pagination = {
     clickable: true,
     renderBullet: function (index: number, className: string) {
@@ -52,7 +57,7 @@ const FirstSlide = () => {
   return (
     <div class={styles.wrapper}>
       <div class={styles.wrapper__asside}>
-        <Asside />
+        <Asside sliderController={sliderController} />
       </div>
       <div
         class={

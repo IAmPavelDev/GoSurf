@@ -21,7 +21,6 @@ const Travel = () => {
     document
       .getElementsByClassName("swiper")[0]
       .classList.add("swiper__container");
-    
   });
 
   return (
@@ -29,7 +28,7 @@ const Travel = () => {
       <div class={styles.wrapper__title}>
         <div class={styles.wrapper__title__left}>
           <div class={styles.big}>
-            <img src={TravelLogoTitle} />
+            <img src={TravelLogoTitle} alt={"travel logo"} />
             <div class={styles.small}>Travel</div>
           </div>
         </div>
@@ -140,7 +139,7 @@ const Travel = () => {
                       >
                         Pricing
                       </div>
-                      {data.pricing}
+                      {data.planePricing}
                     </div>
                   </div>
                   <div class={styles.slide__bottom__btn}>
