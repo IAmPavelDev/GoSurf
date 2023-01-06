@@ -25,7 +25,7 @@ const Slider: Component<{
   let isMouseDown: boolean = false; //is mouse key pressed flag
   const slideHeightArray: Array<number> = []; //contain height of every single slide by index from 0 to children.length
   let currentSlide = 1; //number of currently displaying slide, from 1 to children.length + 1
-
+  let slideBlock: boolean = false;
   const getHeightToShift = (direction: "prev" | "next"): number => {
     // const height = slideHeightArray
     //   .slice(0, direction === "prev" ? currentSlide - 2 : currentSlide)
@@ -60,26 +60,24 @@ const Slider: Component<{
         parseInt(slideTrack.getBoundingClientRect().height.toFixed(0))
     );
   const next = () => {
-    slideTrack && (slideTrack.style.transition = `all 0.9s`);
-    if (!(slideTrack && currentSlide < children.length && isBottom())) return;
+    slideTrack && (slideTrack.style.transition = `all 0.6s`);
+    if (
+      !(
+        slideTrack &&
+        currentSlide < children.length &&
+        isBottom() &&
+        !slideBlock
+      )
+    )
+      return;
     slideTrack.style.transform = `translateY(${-getHeightToShift("next")}px)`;
-    // setTimeout(() => {
-    //   if (!slideTrack) return;
-    //   setTimeout(() => {
-    window.scrollTo({
-      top: 0,
-      left: 0,
-      behavior: "smooth",
-    });
-    //   }, 2.5);
-    //
-    //   slideTrack.style.transition = `all 0.8s`;
-    //   slideTrack.style.transform = `translateY(${-slideHeightArray
-    //     .slice(0, currentSlide - 1)
-    //     .reduce((acc, h) => acc + h, 0)}px)`;
-    // }, 600);
-
-    slideTrack.style.height = `${slideHeightArray[currentSlide]}px`;
+    slideTrack.style.height = `${window.innerHeight}px`;
+    setTimeout(() => {
+      if (!slideTrack) return;
+      slideTrack.style.height = `${slideHeightArray[currentSlide - 1]}px`;
+      slideBlock = !slideBlock;
+    }, 300);
+    slideBlock = !slideBlock;
     currentSlide += 1;
   };
   const prev = () => {
@@ -90,7 +88,7 @@ const Slider: Component<{
         getPrevSlidesHeightsSum();
     slideTrack &&
       (slideTrack.style.transition = `all ${
-        slideHeightArray[currentSlide - 2] / 1200
+        slideHeightArray[currentSlide - 2] / 1800
       }s`);
     if (slideTrack && currentSlide >= 2 && isTop) {
       slideTrack.style.transform = `translateY(${-getHeightToShift("prev")}px)`;

@@ -1,7 +1,127 @@
 .wrapper {
-  height: 100vh;
   width: 100%;
-  background-color: red;
+  background-color: #171919;
+}
+.wrapper .wrapper__title {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: fit-content;
+  z-index: 2;
+}
+.wrapper .wrapper__title .wrapper__title__left {
+  color: white;
+  padding-top: 138px;
+}
+.wrapper .wrapper__title .wrapper__title__left .big {
+  top: 0;
+  width: fit-content;
+}
+.wrapper .wrapper__slider {
+  background-image: url("./../../images/ShopWaveBack.png");
+  background-repeat: no-repeat;
+}
+.wrapper .wrapper__slider .wrapper__slider__slide {
+  position: relative;
+  height: 780px;
+  width: fit-content;
+  border: 1px solid red;
+  z-index: 1 !important;
+  color: white;
+  display: flex;
+  flex-direction: row-reverse;
+  background-color: transparent;
+}
+.wrapper .slide__bottom {
+  background-color: #171919;
+  width: 100%;
+  height: fit-content;
+}
+.wrapper .slide__bottom .slide__bottom__data {
+  padding: 100px 140px 220px 140px;
+  display: flex !important;
+  flex-direction: row;
+  gap: 7vw;
+  justify-content: space-between;
+  font-weight: 800;
+  font-size: 40px;
+  line-height: 36px;
+  text-transform: uppercase;
+  color: #fff;
+  z-index: 10 !important;
+  position: relative !important;
+}
+.wrapper .slide__bottom .slide__bottom__data .data__container {
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+  position: relative;
+  gap: 12px;
+  min-width: 200px;
+  align-content: flex-start;
+  flex-wrap: wrap;
+  z-index: 12 !important;
+}
+.wrapper .slide__bottom .slide__bottom__data .data__container .data__label {
+  font-size: 18px;
+  line-height: 22px;
+  text-align: right;
+  letter-spacing: 8px;
+  text-transform: uppercase;
+  color: #ffffff;
+  opacity: 0.5;
+  transform: rotate(-90deg) translateX(-90%) translateY(-36px);
+  white-space: nowrap;
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform-origin: 0 0;
+}
+.wrapper .slide__bottom .slide__bottom__btn {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 80px;
+  font-weight: 800;
+  font-size: 40px;
+  line-height: 36px;
+  text-transform: uppercase;
+  color: #ffffff;
+  align-items: center;
+  margin-bottom: 100px;
+}
+.wrapper .slide__bottom .slide__bottom__btn div {
+  padding: 18px;
+  cursor: pointer;
+}
+.wrapper .slide__bottom .slide__bottom__btn .go {
+  padding-right: 0;
+}
+.wrapper .slide__bottom .slide__bottom__btn .stick {
+  min-height: 1px;
+  background-color: #fff;
+  min-width: 20px;
+  transform: translateX(50%);
+}
+.wrapper .slide__bottom .slide__bottom__btn .surf {
+  background-color: #4af6cd;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.slide__nav__prev {
+  content: url("./../../images/arrows/leftArrow.svg");
+  top: 40px !important;
+  left: auto !important;
+  right: 125px !important;
+}
+
+.slide__nav__next {
+  content: url("./../../images/arrows/rightArrow.svg");
+  top: 40px !important;
+  right: 80px !important;
 }
 
 /*# sourceMappingURL=Shop.module.css.map */
