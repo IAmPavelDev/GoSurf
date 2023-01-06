@@ -6,10 +6,10 @@ import travelIcon from "./../../../images/Travel.svg";
 import searchIcon from "./../../../images/search.svg";
 import locationIcon from "./../../../images/location.svg";
 import { Component } from "solid-js";
-import { controllTypes } from "../../../slider/Vertical/Slider";
+import { controlTypes } from "../../../slider/Vertical/Slider";
 
 const Asside: Component<{
-  sliderController: () => controllTypes;
+  sliderController: () => controlTypes | undefined;
 }> = ({ sliderController }) => {
   const currentDate: Date = new Date();
   return (
@@ -31,20 +31,29 @@ const Asside: Component<{
           <div class={styles.panel__links}>
             <div
               class={styles.panel__links__link}
-              onClick={() => sliderController().scrollToSlide(2)}
+              onClick={() => sliderController()?.scrollToSlide(2)}
             >
               <img src={surfIcon} />
               Surf
             </div>
-            <div class={styles.panel__links__link}>
+            <div
+              class={styles.panel__links__link}
+              onClick={() => sliderController()?.scrollToSlide(4)}
+            >
               <img src={travelIcon} />
               Travel
             </div>
-            <div class={styles.panel__links__link}>
+            <div
+              class={styles.panel__links__link}
+              onClick={() => sliderController()?.scrollToSlide(5)}
+            >
               <img src={campIcon} />
               Sleep
             </div>
-            <div class={styles.panel__links__link}>
+            <div
+              class={styles.panel__links__link}
+              onClick={() => sliderController()?.scrollToSlide(6)}
+            >
               <img src={surfboardIcon} />
               Shop
             </div>

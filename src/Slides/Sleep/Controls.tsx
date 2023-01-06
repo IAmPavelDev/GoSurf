@@ -15,7 +15,6 @@ export function Controls({ incr, decr, ctlBlockId }: Props) {
       document.getElementsByClassName("nightCtl")[ctlBlockId];
     const guestsCtl: Element | null =
       document.getElementsByClassName("guestCtl")[ctlBlockId];
-    console.log(nightsCtl);
     if (nightsCtl) {
       Array.from(document.getElementsByClassName("nights"))[
         ctlBlockId

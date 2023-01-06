@@ -1,0 +1,14 @@
+.wrapper {
+  width: 100%;
+  overflow: hidden;
+  min-height: 100vh;
+}
+.wrapper .slide {
+  box-sizing: border-box;
+  transition: all 0.6s;
+}
+.wrapper #slides__track {
+  transition-timing-function: ease-out;
+}
+
+/*# sourceMappingURL=Slider.module.css.map */

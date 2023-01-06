@@ -16,15 +16,13 @@ import downArrow from "./../../images/arrows/downArrow.svg";
 import { Component, createEffect } from "solid-js";
 import Asside from "./Asside/Asside";
 import Map from "./Map/Map";
-import { controllTypes } from "../../slider/Vertical/Slider";
+import { controlTypes } from "../../slider/Vertical/Slider";
 
 const titlesArr = ["North Shore", "South Shore", "West Shore", "East Shore"];
 
 const FirstSlide: Component<{
-  sliderController: () => controllTypes;
+  sliderController: () => controlTypes | undefined;
 }> = ({ sliderController }) => {
-  console.log(sliderController);
-
   const pagination = {
     clickable: true,
     renderBullet: function (index: number, className: string) {
@@ -63,10 +61,9 @@ const FirstSlide: Component<{
         class={
           styles.wrapper__downArrow + " animate__animated animate__fadeInDown"
         }
+        onClick={() => sliderController()?.scrollToSlide(2)}
       >
-        <a href="#">
-          <img src={downArrow} alt="down arrow" />
-        </a>
+        <img src={downArrow} alt="down arrow" />
       </div>
       <div class={styles.wrapper__map}>
         <Map />

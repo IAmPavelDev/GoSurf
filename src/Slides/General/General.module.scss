@@ -12,9 +12,9 @@
     left: 210px;
     z-index: 11 !important;
     animation: fadeInDown ease-out infinite;
-    animation: animationPause 5s linear infinite;
     --animate-delay: 3s;
     --animate-duration: 2s;
+    cursor: pointer;
 }
 .wrapper__map {
     position: absolute;

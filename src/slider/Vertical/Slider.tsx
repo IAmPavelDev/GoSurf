@@ -4,7 +4,7 @@ import styles from "./Slider.module.scss";
 
 import clearDraggable from "../clearDraggable";
 
-export type controllTypes = {
+export type controlTypes = {
   scrollToSlide: (numberOfSlide: number) => void;
   nextSlide: () => void;
   prevSlide: () => void;
@@ -13,7 +13,7 @@ const Slider: Component<{
   children: JSX.Element[];
   slidesToDisplay?: number;
   useDragToSwipe?: boolean;
-  controller?: (controller: controllTypes) => void;
+  controller?: (controller: controlTypes) => void;
 }> = ({
   children,
   slidesToDisplay = 1,
@@ -27,6 +27,12 @@ const Slider: Component<{
   let currentSlide = 1; //number of currently displaying slide, from 1 to children.length + 1
 
   const getHeightToShift = (direction: "prev" | "next"): number => {
+    // const height = slideHeightArray
+    //   .slice(0, direction === "prev" ? currentSlide - 2 : currentSlide)
+    //   .reduce((acc, h) => acc + h, 0);
+    // return direction === "prev"
+    //   ? height
+    //   : height - (slideHeightArray[currentSlide - 1] - window.innerHeight);
     return slideHeightArray
       .slice(0, direction === "prev" ? currentSlide - 2 : currentSlide)
       .reduce((acc, h) => acc + h, 0);
@@ -36,6 +42,13 @@ const Slider: Component<{
     return slideHeightArray
       .slice(0, currentSlide - 1)
       .reduce((acc, h) => acc + h, 0);
+  };
+  const computeSlideHeight = () => {
+    children.forEach((slide, index) => {
+      slideHeightArray[index] = parseInt(
+        window.getComputedStyle(slide as HTMLElement, null).height.slice(0, -2)
+      );
+    });
   };
 
   const isBottom = (): boolean =>
@@ -47,30 +60,37 @@ const Slider: Component<{
         parseInt(slideTrack.getBoundingClientRect().height.toFixed(0))
     );
   const next = () => {
-    slideTrack &&
-      (slideTrack.style.transition = `all ${
-        slideHeightArray[currentSlide] / 2000
-      }s`);
-    if (slideTrack && currentSlide < children.length && isBottom()) {
-      slideTrack.style.transform = `translateY(${-getHeightToShift("next")}px)`;
-      currentSlide++;
-      const h = slideHeightArray[currentSlide - 1];
-      slideTrack.style.height = `${h}px`;
-      window.scrollTo({
-        top: 100,
-        left: 0,
-        behavior: "smooth",
-      });
-    }
+    slideTrack && (slideTrack.style.transition = `all 0.9s`);
+    if (!(slideTrack && currentSlide < children.length && isBottom())) return;
+    slideTrack.style.transform = `translateY(${-getHeightToShift("next")}px)`;
+    // setTimeout(() => {
+    //   if (!slideTrack) return;
+    //   setTimeout(() => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "smooth",
+    });
+    //   }, 2.5);
+    //
+    //   slideTrack.style.transition = `all 0.8s`;
+    //   slideTrack.style.transform = `translateY(${-slideHeightArray
+    //     .slice(0, currentSlide - 1)
+    //     .reduce((acc, h) => acc + h, 0)}px)`;
+    // }, 600);
+
+    slideTrack.style.height = `${slideHeightArray[currentSlide]}px`;
+    currentSlide += 1;
   };
   const prev = () => {
+    console.log(currentSlide);
     const isTop =
       slideTrack &&
       Math.abs(parseInt(slideTrack.getBoundingClientRect().y.toFixed(0))) <=
         getPrevSlidesHeightsSum();
     slideTrack &&
       (slideTrack.style.transition = `all ${
-        slideHeightArray[currentSlide - 2] / 2000
+        slideHeightArray[currentSlide - 2] / 1200
       }s`);
     if (slideTrack && currentSlide >= 2 && isTop) {
       slideTrack.style.transform = `translateY(${-getHeightToShift("prev")}px)`;
@@ -79,32 +99,21 @@ const Slider: Component<{
     }
   };
 
-  const computeSlideHeight = () => {
-    children.forEach((slide, index) => {
-      slideHeightArray[index] = parseInt(
-        window.getComputedStyle(slide as HTMLElement, null).height.slice(0, -2)
-      );
-    });
-  };
-
   const scrollToSlide = (slide: number) => {
-    console.log(slide);
+    computeSlideHeight();
     slideTrack &&
-      (slideTrack.style.transition = `all ${
-        0.6 * Math.abs(slide - currentSlide)
-      }s`);
+      (slideTrack.style.transition = `all ${Math.abs(slide - currentSlide)}s`);
 
-    slide -= 1;
     let shifter: number = slideHeightArray
-      .slice(0, slide)
+      .slice(0, slide - 1)
       .reduce((acc, h) => acc + h, 0);
 
-    if (slideTrack && currentSlide < children.length && isBottom()) {
+    if (slideTrack && slide - 1 < children.length && isBottom()) {
       slideTrack.style.transform = `translateY(${-shifter}px)`;
-      currentSlide = slide;
-      const h = slideHeightArray[currentSlide - 1];
+      const h = slideHeightArray[slide - 1];
       slideTrack.style.height = `${h}px`;
     }
+    currentSlide = slide;
   };
 
   // const SliderFinalCorrector = (e: MouseEvent | WheelEvent) => {

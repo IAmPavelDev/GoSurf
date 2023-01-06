@@ -9,6 +9,7 @@ body {
   user-select: none;
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
+  scroll-behavior: smooth;
 }
 body::-webkit-scrollbar {
   display: none;
