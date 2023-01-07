@@ -1,7 +1,4 @@
-import { Component, createEffect, createSignal } from "solid-js";
-import "solid-devtools"; //devtools
-import styles from "./App.module.scss";
-import firstSlideBackground from "./images/firstSlideBack.png";
+import { Component, createSignal } from "solid-js";
 import Slider, { controlTypes } from "./slider/Vertical/Slider";
 import General from "./Slides/General/General";
 import SurfMap from "./Slides/SurfMap/SurfMap";
@@ -18,22 +15,22 @@ const App: Component = () => {
         setSliderController(e);
       }}
     >
-      <div class={styles.slide}>
+      <div>
         <General sliderController={sliderController} />
       </div>
-      <div class={styles.slide}>
+      <div>
         <SurfMap />
       </div>
-      <div class={styles.slide}>
+      <div>
         <SurfSlider />
       </div>
-      <div class={styles.slide}>
+      <div>
         <Travel />
       </div>
-      <div class={styles.slide}>
+      <div>
         <Sleep />
       </div>
-      <div class={styles.slide}>
+      <div>
         <Shop />
       </div>
     </Slider>

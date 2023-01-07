@@ -1,6 +1,7 @@
 .wrapper {
   width: 100%;
   background-color: #171919;
+  padding-bottom: 100px;
   .wrapper__title {
     position: relative;
     display: flex;
@@ -19,17 +20,143 @@
   }
   .wrapper__slider {
     background-image: url("./../../images/ShopWaveBack.png");
+    background-size: 70%;
     background-repeat: no-repeat;
+    background-position-x: right;
     .wrapper__slider__slide {
       position: relative;
       height: 780px;
-      width: fit-content;
-      border: 1px solid red;
       z-index: 1 !important;
-      color: white;
-      display: flex;
-      flex-direction: row-reverse;
       background-color: transparent;
+
+      .slide__data {
+        height: 100%;
+        display: none;
+        color: white;
+
+        .slide__data__title {
+          padding-bottom: 50px;
+
+          .title__label {
+            font-size: 22px;
+            line-height: 32px;
+            letter-spacing: 7.33333px;
+            text-transform: uppercase;
+            opacity: 0.5;
+            position: relative;
+            padding-bottom: 8px;
+
+            &::after {
+              content: "";
+              height: 1px;
+              width: 80px;
+              background-color: white;
+              position: absolute;
+              top: 50%;
+              transform: translate(30%, -50%);
+            }
+          }
+
+          .title__data {
+            font-weight: 800;
+            font-size: 40px;
+            line-height: 40px;
+          }
+        }
+
+        .slide__data__price {
+          font-weight: 800;
+          font-size: 32px;
+          line-height: 40px;
+          padding-bottom: 65px;
+        }
+        .slide__bottom__btn {
+          padding-top: 0;
+        }
+        .slide__data__rate {
+          transform: translateX(-17px);
+        }
+      }
+
+      .slide__image {
+        padding-bottom: 50px;
+
+        img {
+          max-height: 10vw;
+        }
+      }
+    }
+    .slide__everyOne {
+      opacity: 0;
+    }
+    .slide__active {
+      width: calc(60vw - 50px) !important;
+      margin-left: 2vw;
+      opacity: 0;
+      animation: fade linear;
+      animation-delay: 0.4s;
+      animation-duration: 0.8s;
+      animation-fill-mode: both;
+      .wrapper__slider__slide {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row !important;
+        justify-content: space-around !important;
+        align-content: center !important;
+        .slide__data {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+        }
+        .slide__image {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          width: fit-content;
+          padding-bottom: 0;
+          img {
+            max-width: 300px;
+            max-height: 100%;
+            min-height: 20vw;
+            object-fit: contain;
+          }
+        }
+      }
+    }
+    .slide__next {
+      width: 15vw !important;
+      opacity: 0;
+      animation: fade linear;
+      animation-delay: 0.4s;
+      animation-duration: 0.8s;
+      animation-fill-mode: both;
+      .wrapper__slider__slide {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        .slide__image {
+          display: flex;
+          justify-content: center;
+        }
+      }
+    }
+    .slide__last {
+      width: 15vw !important;
+      margin-right: 10vw !important;
+      opacity: 0;
+      animation: fade linear;
+      animation-delay: 0.4s;
+      animation-duration: 0.8s;
+      animation-fill-mode: both;
+      .wrapper__slider__slide {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        .slide__image {
+          display: flex;
+          justify-content: center;
+        }
+      }
     }
   }
   .slide__bottom {
@@ -57,7 +184,6 @@
         position: relative;
         gap: 12px;
         min-width: 200px;
-        //justify-content: center;
         align-content: flex-start;
         flex-wrap: wrap;
         z-index: 12 !important;
@@ -89,7 +215,7 @@
       text-transform: uppercase;
       color: #ffffff;
       align-items: center;
-      margin-bottom: 100px;
+      padding-top: 280px;
       div {
         padding: 18px;
         cursor: pointer;
@@ -123,4 +249,13 @@
   content: url("./../../images/arrows/rightArrow.svg");
   top: 40px !important;
   right: 80px !important;
+}
+
+@keyframes fade {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }

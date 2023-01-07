@@ -1,5 +1,5 @@
 import styles from "./Sleep.module.scss";
-import { Accessor, createEffect, createSignal, For } from "solid-js";
+import { Accessor, createEffect, For } from "solid-js";
 import SleepLogoTitle from "../../images/SleepLogoTitle.svg";
 import { Swiper, SwiperSlide } from "swiper/solid";
 import { EffectFade, Navigation } from "swiper";
@@ -53,7 +53,6 @@ const Sleep = () => {
             document.getElementsByClassName(styles.airplane)
           );
           currentSlide = e.activeIndex;
-          console.log(currentSlide);
           airplanes[e.activeIndex].classList.remove(styles.airplane__active);
           airplanes[e.activeIndex].classList.remove(styles.airplane__out);
           if (buffer) {

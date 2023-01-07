@@ -33,32 +33,32 @@ const Asside: Component<{
               class={styles.panel__links__link}
               onClick={() => sliderController()?.scrollToSlide(2)}
             >
-              <img src={surfIcon} />
+              <img src={surfIcon} alt={"surf icon"} />
               Surf
             </div>
             <div
               class={styles.panel__links__link}
               onClick={() => sliderController()?.scrollToSlide(4)}
             >
-              <img src={travelIcon} />
+              <img src={travelIcon} alt={"travel icon"} />
               Travel
             </div>
             <div
               class={styles.panel__links__link}
               onClick={() => sliderController()?.scrollToSlide(5)}
             >
-              <img src={campIcon} />
+              <img src={campIcon} alt={"camp icon"} />
               Sleep
             </div>
             <div
               class={styles.panel__links__link}
               onClick={() => sliderController()?.scrollToSlide(6)}
             >
-              <img src={surfboardIcon} />
+              <img src={surfboardIcon} alt={"surfboard icon"} />
               Shop
             </div>
             <div class={styles.panel__links__link}>
-              <img src={searchIcon} />
+              <img src={searchIcon} alt={"search icon"} />
             </div>
           </div>
           <div class={styles.panel__info}>
@@ -75,7 +75,7 @@ const Asside: Component<{
               </div>
             </div>
             <div class={styles.panel__info__location}>
-              <img src={locationIcon} />
+              <img src={locationIcon} alt={"location icon"} />
               California
             </div>
           </div>

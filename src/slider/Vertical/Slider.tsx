@@ -100,7 +100,9 @@ const Slider: Component<{
   const scrollToSlide = (slide: number) => {
     computeSlideHeight();
     slideTrack &&
-      (slideTrack.style.transition = `all ${Math.abs(slide - currentSlide)}s`);
+      (slideTrack.style.transition = `all ${
+        0.6 * Math.abs(slide - currentSlide)
+      }s`);
 
     let shifter: number = slideHeightArray
       .slice(0, slide - 1)

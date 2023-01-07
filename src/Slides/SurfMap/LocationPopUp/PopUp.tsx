@@ -1,5 +1,5 @@
 import { Component } from "solid-js";
-import { TBeachInfo } from "./../../../BeachDataArray";
+import { TBeachInfo } from "../../../BeachDataArray";
 import styles from "./PopUp.module.scss";
 import rightArrow from "./../../../images/arrows/rightArrow.svg";
 import SurfIcon from "./../../../images/SurfIcon.svg";
@@ -16,7 +16,7 @@ const PopUp: Component<{ data: TBeachInfo }> = ({ data }) => {
           <div class={styles.beachInfo__country}>{data.country}</div>
         </div>
         <a href="#">
-          <img src={rightArrow} />
+          <img src={rightArrow} alt={"right arrow"} />
         </a>
       </div>
       <div class={styles.wrapper__bottom__weatherInfo}>

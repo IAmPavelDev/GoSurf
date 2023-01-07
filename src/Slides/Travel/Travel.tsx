@@ -4,7 +4,6 @@ import { Swiper, SwiperSlide } from "swiper/solid";
 import BeachDataArray, { TBeachInfo } from "../../BeachDataArray";
 import { createEffect, For } from "solid-js";
 import { Autoplay, EffectFade, Navigation } from "swiper";
-import "./styles.scss";
 import Airplane from "./../../images/airplane.png";
 import RightArrow from "./../../images/arrows/rightArrow.svg";
 
@@ -85,7 +84,7 @@ const Travel = () => {
                     </div>
 
                     <div id="airplane" class={styles.airplane}>
-                      <img src={Airplane} />
+                      <img src={Airplane} alt={"airplane"} />
                     </div>
                   </div>
                 </div>
@@ -147,7 +146,7 @@ const Travel = () => {
                     <span class={styles.stick}></span>
                     <div class={styles.flight}>
                       Flight
-                      <img src={RightArrow} />
+                      <img src={RightArrow} alt={"right arrow"} />
                     </div>
                   </div>
                 </div>

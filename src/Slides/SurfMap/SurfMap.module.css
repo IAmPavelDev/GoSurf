@@ -1,0 +1,127 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: #171919;
+  margin-top: 0;
+  height: 100vh;
+}
+.wrapper .wrapper__title {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: fit-content;
+}
+.wrapper .wrapper__title .wrapper__title__left {
+  color: white;
+  padding-top: 138px;
+}
+.wrapper .wrapper__title .wrapper__title__left .big {
+  top: 0;
+  width: fit-content;
+  position: relative;
+}
+.wrapper .wrapper__title .wrapper__title__left .big .small {
+  font-size: 80px;
+  font-weight: 800;
+  width: fit-content;
+  text-transform: uppercase;
+  position: absolute;
+  top: -35px;
+  right: -14px;
+}
+.wrapper .wrapper__title .wrapper__title__left .big .small::before {
+  content: "";
+  position: absolute;
+  right: 0;
+  height: 1px;
+  width: 80px;
+  background-color: #4af6cd;
+}
+.wrapper .wrapper__title .wrapper__title__right {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  color: #ffffff;
+  padding-right: 80px;
+  margin-bottom: -50px;
+  position: relative;
+}
+.wrapper .wrapper__title .wrapper__title__right .label {
+  position: relative;
+  font-size: 22px;
+  line-height: 32px;
+  text-align: right;
+  letter-spacing: 7.33333px;
+  text-transform: uppercase;
+  opacity: 0.5;
+}
+.wrapper .wrapper__title .wrapper__title__right .label:before {
+  content: "";
+  position: absolute;
+  height: 1px;
+  width: 80px;
+  background-color: #ffffff;
+  top: 50%;
+  transform: translateY(-50%);
+  left: -105px;
+}
+.wrapper .wrapper__title .wrapper__title__right .location {
+  font-weight: 800;
+  font-size: 40px;
+  line-height: 86px;
+  text-align: right;
+  text-transform: uppercase;
+}
+.wrapper .wrapper__title .wrapper__title__right .location span {
+  font-weight: 250;
+}
+.wrapper .wrapper__title .wrapper__title__right .locationLogo {
+  opacity: 0.03;
+  position: absolute;
+  bottom: 0;
+  transform: translateY(43%);
+  right: -130px;
+  height: 350px;
+}
+.wrapper .wrapper__locationDots {
+  display: flex;
+  justify-self: center;
+  justify-content: center;
+  margin-bottom: 57px;
+  position: relative;
+}
+.wrapper .wrapper__locationDots .popUp {
+  position: absolute;
+  display: none;
+}
+.wrapper .wrapper__locationDots .popUp__hidden {
+  position: absolute;
+  animation: hide linear 0.6s;
+  animation-fill-mode: both;
+  opacity: 1;
+}
+.wrapper .wrapper__locationDots .popUp__displayed {
+  position: absolute;
+  display: block;
+  animation: display linear 0.4s;
+  animation-fill-mode: both;
+  opacity: 0;
+}
+
+@keyframes display {
+  to {
+    opacity: 1;
+  }
+}
+@keyframes hide {
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+    z-index: -2;
+  }
+}
+
+/*# sourceMappingURL=SurfMap.module.css.map */
