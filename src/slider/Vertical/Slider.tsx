@@ -27,12 +27,6 @@ const Slider: Component<{
   let currentSlide = 1; //number of currently displaying slide, from 1 to children.length + 1
   let slideBlock: boolean = false;
   const getHeightToShift = (direction: "prev" | "next"): number => {
-    // const height = slideHeightArray
-    //   .slice(0, direction === "prev" ? currentSlide - 2 : currentSlide)
-    //   .reduce((acc, h) => acc + h, 0);
-    // return direction === "prev"
-    //   ? height
-    //   : height - (slideHeightArray[currentSlide - 1] - window.innerHeight);
     return slideHeightArray
       .slice(0, direction === "prev" ? currentSlide - 2 : currentSlide)
       .reduce((acc, h) => acc + h, 0);
@@ -81,7 +75,6 @@ const Slider: Component<{
     currentSlide += 1;
   };
   const prev = () => {
-    console.log(currentSlide);
     const isTop =
       slideTrack &&
       Math.abs(parseInt(slideTrack.getBoundingClientRect().y.toFixed(0))) <=
@@ -116,29 +109,6 @@ const Slider: Component<{
     currentSlide = slide;
   };
 
-  // const SliderFinalCorrector = (e: MouseEvent | WheelEvent) => {
-  //   const target = e.currentTarget as HTMLElement;
-  //   currentSlide = Number(
-  //     (Number(target.style.transform.slice(12, -3)) / slideHeight + 1).toFixed(
-  //       0
-  //     )
-  //   );
-  //   slideHeight = Number(
-  //     window
-  //       .getComputedStyle(children[currentSlide - 1] as HTMLElement)
-  //       .height.slice(0, -2)
-  //   );
-  //   const getCorrection = () => {
-  //     if (currentSlide > children.length) {
-  //       return (children.length - 1) * slideHeight;
-  //     }
-  //     return slideHeight * (currentSlide - 1);
-  //   };
-  //   target.style.transition = "all 0.6s";
-  //   // target.style.transform = `translateY(${-getCorrection()}px)`;
-
-  //   isMouseDown = false;
-  // };
   createEffect(() => {
     setSlides(
       children.map((slide) => {
@@ -170,31 +140,8 @@ const Slider: Component<{
         isMouseDown = true;
         const target = e.currentTarget as HTMLElement;
         target.style.transition = "transform 0s";
-        // currentSlide = Number(
-        //   (
-        //     Number(target.style.transform.slice(12, -3)) / slideHeight +
-        //     1
-        //   ).toFixed(0)
-        // );
       });
 
-    // document
-    //   ?.getElementById("slides__track")
-    //   ?.addEventListener("mouseup", SliderFinalCorrector);
-    // document
-    //   ?.getElementById("slides__track")
-    //   ?.addEventListener("mouseleave", SliderFinalCorrector);
-    // document
-    //   ?.getElementById("slides__track")
-    //   ?.addEventListener("mouseout", SliderFinalCorrector);
-    // document
-    //   ?.getElementById("slides__track")
-    //   ?.addEventListener("mousemove", (e: MouseEvent) => {
-    //     const target = e.currentTarget as HTMLElement;
-    //     const moveY =
-    //       Number(target.style.transform.slice(11, -3)) + e.movementY;
-    //     if (isMouseDown) target.style.transform = `translateY(${moveY}px)`;
-    //   });
     slideTrack?.addEventListener("wheel", (e: WheelEvent) => {
       computeSlideHeight();
       e.deltaY > 0 ? next() : prev();
