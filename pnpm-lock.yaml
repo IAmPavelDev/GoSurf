@@ -6,6 +6,7 @@ specifiers:
   '@types/node': ^18.11.18
   animate.css: ^4.1.1
   node: ^19.3.0
+  pnpm: ^7.25.1
   sass: ^1.57.0
   solid-devtools: ^0.24.0
   solid-js: ^1.5.1
@@ -17,6 +18,7 @@ specifiers:
 
 dependencies:
   animate.css: 4.1.1
+  pnpm: 7.25.1
   sass: 1.57.1
   solid-devtools: 0.24.7_solid-js@1.5.1+vite@3.0.9
   solid-js: 1.5.1
@@ -2662,6 +2664,12 @@ packages:
   /picomatch/2.3.1:
     resolution: {integrity: sha512-JU3teHTNjmE2VCGFzuY8EXzCDVwEqB2a8fsIvwaStHhAWJEeVd1o1QD80CU6+ZdEXXSLbSsuLwJjkCBWqRQUVA==}
     engines: {node: '>=8.6'}
+
+  /pnpm/7.25.1:
+    resolution: {integrity: sha512-y/jlADVxyk+scBwI0ALRf8QoUMgrWyONnD1voZaPTBI+D+aIXXiFG9pMk3eLhvEfc0nK8KUnnbDDBTywd7WsMw==}
+    engines: {node: '>=14.6'}
+    hasBin: true
+    dev: false
 
   /postcss/8.4.16:
     resolution: {integrity: sha512-ipHE1XBvKzm5xI7hiHCZJCSugxvsdq2mPnsq5+UF+VHCjiBvtDrlxJfMBToWaP9D5XlgNmcFGqoHmUn0EYEaRQ==}
