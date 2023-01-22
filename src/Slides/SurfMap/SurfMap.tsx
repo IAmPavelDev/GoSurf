@@ -1,10 +1,10 @@
+import { For, lazy } from "solid-js";
 import styles from "./SurfMap.module.scss";
 
-import LocationDots from "../../images/locationDots";
+const LocationDots = lazy(() => import("../../images/locationDots"));
 import SurfLogoTitle from "./../../images/SurfLogoTitle.svg";
 import Location from "./../../images/location.svg";
-import PopUp from "./LocationPopUp/PopUp";
-import { For } from "solid-js";
+const PopUp = lazy(() => import("./LocationPopUp/PopUp"));
 
 import BeachDataArray from "./../../BeachDataArray";
 
@@ -26,7 +26,7 @@ const hidePopUp = (e: MouseEvent) => {
   }
 };
 
-const passLocation = (location: string, e: MouseEvent) => {
+export const passLocation = (location: string, e: MouseEvent) => {
   for (const data of BeachDataArray) {
     if (data.country === location) {
       const target = document.getElementById(data.id);
@@ -55,7 +55,7 @@ const passLocation = (location: string, e: MouseEvent) => {
   }
 };
 
-const SecondSlide = () => {
+const SurfMap = () => {
   return (
     <div class={styles.wrapper}>
       <div class={styles.wrapper__title}>
@@ -89,4 +89,4 @@ const SecondSlide = () => {
   );
 };
 
-export default SecondSlide;
+export default SurfMap;

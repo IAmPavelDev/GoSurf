@@ -1,11 +1,11 @@
-import { Component, createSignal } from "solid-js";
+import { Component, createSignal, lazy } from "solid-js";
 import Slider, { controlTypes } from "./slider/Vertical/Slider";
 import General from "./Slides/General/General";
-import SurfMap from "./Slides/SurfMap/SurfMap";
-import SurfSlider from "./Slides/SurfSlider/SurfSlider";
-import Travel from "./Slides/Travel/Travel";
-import Sleep from "./Slides/Sleep/Sleep";
-import Shop from "./Slides/Shop/Shop";
+const SurfMap = lazy(() => import("./Slides/SurfMap/SurfMap"));
+const SurfSlider = lazy(() => import("./Slides/SurfSlider/SurfSlider"));
+const Travel = lazy(() => import("./Slides/Travel/Travel"));
+const Sleep = lazy(() => import("./Slides/Sleep/Sleep"));
+const Shop = lazy(() => import("./Slides/Shop/Shop"));
 
 const App: Component = () => {
   const [sliderController, setSliderController] = createSignal<controlTypes>();
